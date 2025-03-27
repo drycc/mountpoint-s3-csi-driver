@@ -21,7 +21,8 @@ test-style:
 
 podman-build:
 	# build the main image
-	podman build --build-arg CODENAME=${CODENAME} -t ${IMAGE} .
+	podman build --build-arg CODENAME=${CODENAME} --build-arg VERSION=${MUTABLE_VERSION} -t ${IMAGE} .
+	# build the immutable image
 	podman tag ${IMAGE} ${MUTABLE_IMAGE}
 
 deploy: build podman-build podman-push

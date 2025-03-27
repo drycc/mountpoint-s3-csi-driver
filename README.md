@@ -13,7 +13,7 @@ helm upgrade --install aws-mountpoint-s3-csi-driver \
     --namespace kube-system \
     --set experimental.podMounter=true \
     --set image.repository=registry.drycc.cc/drycc/mountpoint-s3-csi-driver \
-    --set image.tag=v1.13.0 \
+    --set image.tag=1.13.0 \
     aws-mountpoint-s3-csi-driver/aws-mountpoint-s3-csi-driver
 ```
 

@@ -1,12 +1,19 @@
 #!/bin/bash
-
-# Define a function to parse command-line arguments
+# Define a function to parse command line arguments
 parse_args() {
     while [[ $# -gt 0 ]]; do
         case "$1" in
+            --aws-access-key-id=*)
+                AWS_ACCESS_KEY_ID="${1#*=}"
+                shift
+                ;;
             --aws-access-key-id)
                 AWS_ACCESS_KEY_ID="$2"
                 shift 2
+                ;;
+            --aws-secret-access-key=*)
+                AWS_SECRET_ACCESS_KEY="${1#*=}"
+                shift
                 ;;
             --aws-secret-access-key)
                 AWS_SECRET_ACCESS_KEY="$2"
@@ -27,6 +34,5 @@ parse_args "$@"
 export AWS_ACCESS_KEY_ID
 export AWS_SECRET_ACCESS_KEY
 
-# Execute mount-s3 program, passing other arguments
+# Call the mount-s3 program, passing other arguments
 exec /mountpoint-s3/bin/mount-s3-raw "${OTHER_ARGS[@]}"
-

@@ -11,9 +11,9 @@ helm repo add aws-mountpoint-s3-csi-driver https://awslabs.github.io/mountpoint-
 helm repo update
 helm upgrade --install aws-mountpoint-s3-csi-driver \
     --namespace kube-system \
-    --set experimental.podMounter=true \
+    --set supportLegacySystemDMounts=false \
     --set image.repository=registry.drycc.cc/drycc/mountpoint-s3-csi-driver \
-    --set image.tag=1.13.0 \
+    --set image.tag=2.1.0 \
     aws-mountpoint-s3-csi-driver/aws-mountpoint-s3-csi-driver
 ```
 

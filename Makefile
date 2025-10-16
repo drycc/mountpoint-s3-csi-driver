@@ -10,6 +10,9 @@ DRYCC_REGISTRY ?= ${DEV_REGISTRY}
 
 SHELL_SCRIPTS = $(wildcard rootfs/mountpoint-s3/bin/*)
 
+# Get BASE_VERSION from the script
+BASE_VERSION := $(shell bash _scripts/get_base_version.sh)
+
 include versioning.mk
 
 all: podman-build podman-push
@@ -21,9 +24,7 @@ test-style:
 
 podman-build:
 	# build the main image
-	podman build --build-arg CODENAME=${CODENAME} --build-arg VERSION=${MUTABLE_VERSION} -t ${IMAGE} .
-	# build the immutable image
-	podman tag ${IMAGE} ${MUTABLE_IMAGE}
+	podman build --build-arg VERSION=${BASE_VERSION} -t ${IMAGE} .
 
 deploy: build podman-build podman-push
 

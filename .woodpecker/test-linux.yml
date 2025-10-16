@@ -13,8 +13,6 @@ steps:
   commands:
   - make test
   environment:
-    CODENAME:
-      from_secret: codename
     DEV_REGISTRY:
       from_secret: dev_registry
   when:
